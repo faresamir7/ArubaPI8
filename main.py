@@ -34,7 +34,7 @@ def upgrade(base_url: Annotated[str, typer.Argument()],
             partition: Annotated[str, typer.Argument()]):
     """Upgrade Aruba Mobility Controller using TFTP."""
     client = ArubaAPIClient(base_url, username, password)
-    client.upgrade(filename, partition)
+    client.upgrade(filename, serverip, partition)
     client.logout()
 
 if __name__ == "__main__":
