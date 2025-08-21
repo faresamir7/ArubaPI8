@@ -38,14 +38,13 @@ class ArubaAPIClient:
 
     def show_command(self, show_command: str): ##Show command function
         session=requests.Session() ##Persistent session
-        sessionToken=self.login(session) ##Call to login function
         headers = {}
         payload = ""
         cookies = ""
         showParams = {
             'command' : show_command,
-            'UIDARUBA' : sessionToken
-        } ##Parameters containing UID for authentication and the show command
+            'UIDARUBA' : self.login(session) ##Call to login function
+        }
         response = session.get("https://"+self.base_url+":4343/v1/configuration/showcommand", params=showParams, headers=headers, data=payload, verify=False) ##Get request with empty Payload
         if response.status_code == 200:
             print(json.dumps(response.json(), indent=2)) ##Prints the response
@@ -54,13 +53,12 @@ class ArubaAPIClient:
 
     def upgrade(self, filename: str, partition: str): ##Upgrade using TFTP
         session=requests.Session() ##Persistent session
-        sessionToken=self.login(session) ##Call to login function
         headers = {}
         payload = '{"partition_num": "'+partition+'", "tftphost": "'+self.base_url+'", "filename": "'+filename+'"}'
         cookies = ""
         showParams = {
-            'UIDARUBA' : sessionToken
-        } ##Parameters containing UID for authentication and the show command
+            'UIDARUBA' : self.login(session) ##Call to login function
+        } 
         response = session.post("https://"+self.base_url+":4343/v1/configuration/object/copy_tftp_system", params=showParams, headers=headers, data=payload, verify=False) ##Get request with empty Payload
         if response.status_code == 200:
             print(json.dumps(response.json(), indent=2)) ##Prints the response
