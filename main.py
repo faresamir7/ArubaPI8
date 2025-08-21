@@ -29,7 +29,8 @@ def show_command(base_url: Annotated[str, typer.Argument()],
 def upgrade(base_url: Annotated[str, typer.Argument()],
             username: Annotated[str, typer.Argument()], 
             password: Annotated[str, typer.Argument()], 
-            filename: Annotated[str, typer.Argument()], 
+            filename: Annotated[str, typer.Argument()],
+            serverip: Annotated[str, typer.Argument()],
             partition: Annotated[str, typer.Argument()]):
     """Upgrade Aruba Mobility Controller using TFTP."""
     client = ArubaAPIClient(base_url, username, password)

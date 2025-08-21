@@ -50,7 +50,7 @@ class ArubaAPIClient:
         else:
             raise Exception(f"Request failed: {response.status_code}")
 
-    def upgrade(self, filename: str, partition: str): ##Upgrade using TFTP
+    def upgrade(self, filename: str, serverip: str, partition: str): ##Upgrade using TFTP
         session=requests.Session() ##Persistent session
         headers = {}
         payload = '{"partition_num": "'+partition+'", "tftphost": "'+self.base_url+'", "filename": "'+filename+'"}'
