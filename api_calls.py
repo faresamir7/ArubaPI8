@@ -53,7 +53,7 @@ class ArubaAPIClient:
     def upgrade(self, filename: str, serverip: str, partition: str): ##Upgrade using TFTP
         session=requests.Session() ##Persistent session
         headers = {}
-        payload = '{"partition_num": "'+partition+'", "tftphost": "'+self.base_url+'", "filename": "'+filename+'"}'
+        payload = '{"partition_num": "'+partition+'", "tftphost": "'+serverip+'", "filename": "'+filename+'"}'
         cookies = ""
         showParams = {
             'UIDARUBA' : self.login(session) ##Call to login function
