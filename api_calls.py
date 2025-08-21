@@ -3,7 +3,6 @@ from requests.auth import HTTPBasicAuth
 from typing import Optional
 import urllib3
 import json
-import pandas as pd
 
 class ArubaAPIClient:
     def __init__(self, base_url: str, username: str, password: str):
